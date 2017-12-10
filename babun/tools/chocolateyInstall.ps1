@@ -1,5 +1,3 @@
-$packageName = 'babun'
-
 function RunBabunInstall($unzipPath)
 {
     $babunpath = Join-Path $env:USERPROFILE ".babun"
@@ -16,7 +14,14 @@ function RunBabunInstall($unzipPath)
     }
 }
 
-$url = 'http://projects.reficio.org/babun/download/babun-1.2.0-dist.zip';
 $unzipPath = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
-Install-ChocolateyZipPackage $packageName $url $unzipPath
+$packageArgs = @{
+  packageName = 'babun'
+  url = 'http://projects.reficio.org/babun/download/babun-1.2.0-dist.zip';
+  checksumType = 'sha256'
+  checksum = '89C0A51EA1D995BE5B04B24CD795BA3EBA713B293B43991F0C87E29300429B14'
+  unzipLocation = $unzipPath
+}
+
+Install-ChocolateyZipPackage @packageArgs
 RunBabunInstall $unzipPath
