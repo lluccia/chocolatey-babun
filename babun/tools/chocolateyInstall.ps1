@@ -24,6 +24,21 @@ function InstallBabun {
     start-process $setupBatUnattended -Wait
 }
 
+function FixFilePermissions {
+    $Acl = Get-Acl $env:APPDATA
+    $babunFilesAndFolders = Get-ChildItem -Recurse $babunpath
+
+    Set-Acl -Path $babunpath -AclObject $Acl
+    foreach ($fileOrFolder in $babunFilesAndFolders) {
+        try {
+            Set-Acl -Path $fileOrFolder.FullName -AclObject $Acl
+        } catch [System.Management.Automation.WildcardPatternException] {
+            #ignore error of invalid filenames: [.exe and [.1.gz
+            Write-Host "Skipped invalid file $fileOrFolder.FullName"
+        }
+    }
+}
+
 function BabunIsInstalled {
     return Test-Path $babunpath
 }
@@ -33,4 +48,7 @@ if (BabunIsInstalled) {
 } else {
     Write-Host "Executing installation script..."
     InstallBabun
+
+    Write-Host "Fixing file permissions..."
+    FixFilePermissions
 }

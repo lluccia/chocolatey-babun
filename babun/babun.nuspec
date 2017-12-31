@@ -23,6 +23,7 @@
     <summary>a linux-like console on a Windows host without a lot of fuzz</summary>
     <releaseNotes>
       - waits for installation process to finish
+      - fixes files permissions after installation
     </releaseNotes>
     <tags>babun cygwin</tags>
   </metadata>
