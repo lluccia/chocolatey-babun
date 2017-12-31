@@ -1,4 +1,3 @@
-
 $packageName = 'babun'
 UnInstall-ChocolateyZipPackage packageName 'babun-1.2.0-dist.zip'
 
@@ -7,10 +6,9 @@ if (Test-Path $babunpath)
 {
     $uninstallBat = Join-Path $babunpath "uninstall.bat"
 
-    $command = "& {echo Y | `"$uninstallBat`"}"
+    $command = "& {cd $babunpath; echo Y | `"$uninstallBat`"}"
 
     powershell -Command $command
 
-    #start-process "$uninstallBat" -Wait
     Remove-Item -Recurse -Force $babunpath
 }
