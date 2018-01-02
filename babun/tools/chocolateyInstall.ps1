@@ -24,6 +24,18 @@ function InstallBabun {
     start-process $setupBatUnattended -Wait
 }
 
+function UpdateBabun {
+    $updateBat = Join-Path $babunpath "update.bat"
+    $updateBatUnattended = Join-Path $babunpath "update-unattended.bat"
+
+    Get-Content $updateBat |
+        foreach-object {$_ -replace 'start "" "%CYGWIN_HOME%\\bin\\mintty.exe"', 'rem -- should not run babun --' } |
+        foreach-object {$_ -replace 'pause', 'rem -- should not pause --' } |
+        Set-Content $updateBatUnattended
+
+    start-process $updateBatUnattended -Wait
+ }
+
 function FixFilePermissions {
     $Acl = Get-Acl $env:APPDATA
     $babunFilesAndFolders = Get-ChildItem -Recurse $babunpath
@@ -48,6 +60,9 @@ if (BabunIsInstalled) {
 } else {
     Write-Host "Executing installation script..."
     InstallBabun
+    
+    Write-Host "Updating babun..."
+    UpdateBabun
 
     Write-Host "Fixing file permissions..."
     FixFilePermissions
