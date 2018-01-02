@@ -21,7 +21,9 @@
         Auto update feature,
         "Open Babun Here" context menu entry.</description>
     <summary>a linux-like console on a Windows host without a lot of fuzz</summary>
-    <releaseNotes />
+    <releaseNotes>
+      - waits for installation process to finish
+    </releaseNotes>
     <tags>babun cygwin</tags>
   </metadata>
 </package>
