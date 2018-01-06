@@ -22,8 +22,9 @@
         "Open Babun Here" context menu entry.</description>
     <summary>a linux-like console on a Windows host without a lot of fuzz</summary>
     <releaseNotes>
-      - waits for installation process to finish
-      - fixes files permissions after installation
+- waits for installation process to finish
+- fixes files permissions after installation
+- forces babun HOME to internal .babun dir when HOME environment variable is set
     </releaseNotes>
     <tags>babun cygwin</tags>
   </metadata>
