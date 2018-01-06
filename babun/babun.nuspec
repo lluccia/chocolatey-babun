@@ -8,7 +8,9 @@
     <authors>babun</authors>
     <owners>babun</owners>
     <projectUrl>http://babun.github.io/</projectUrl>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://raw.githubusercontent.com/lluccia/chocolatey-babun/4f5e69172a9c395038a320ee84921290795cea24/icon/mintty.png</iconUrl>
     <description>Babun - a windows shell you will love.
     Babun features the following: Pre-configured Cygwin with a lot of addons,
         Silent command-line installer, no admin rights required,
